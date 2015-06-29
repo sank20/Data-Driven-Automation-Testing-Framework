@@ -1,0 +1,66 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import MyPackage.*;
+public class ReadXLSX {
+	public static void main(String[] args) throws IOException {
+		//ReadXLSX obj1=new ReadXLSX();
+		//MethodUsingString obj1= new MethodUsingString();
+		//obj1.Addition();
+		FileInputStream fis = new FileInputStream(new File("D:\\test.xlsx"));
+		XSSFWorkbook workbook = new XSSFWorkbook (fis);
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		Iterator ite = sheet.rowIterator();
+		                while(ite.hasNext())
+		                {
+			                   Row row =(Row) ite.next();
+			                   Iterator<Cell> cite = row.cellIterator();
+			                   
+			                   while(cite.hasNext())
+			                   {
+			                	   Cell c = cite.next();
+			                	   System.out.println("fetch from next Excel");
+			                   		System.out.print(c.toString() +"  ");
+			                   	String excelname = new String(c.getStringCellValue());
+				 
+			
+			                   System.out.println();
+			               	
+			           		FileInputStream fis1 = new FileInputStream(new File(excelname));
+			           		XSSFWorkbook workbook1 = new XSSFWorkbook (fis1);
+			           		XSSFSheet sheet1 = workbook1.getSheetAt(0);
+			           		Iterator ite1 = sheet1.rowIterator();
+			           		
+			           		//System.out.println("fetch from next Excel");
+			           		   						while(ite1.hasNext())
+			           		   						{
+			           		   							
+			           		   								Row row1 =(Row) ite1.next();
+			           		   								Iterator<Cell> cite1 = row1.cellIterator();
+			           		
+			           		   								while(cite1.hasNext())
+			           		   								{
+			           		   									Cell c1 = cite1.next();
+			           			
+			           		   									System.out.print(c1.toString() +"  ");
+			           			
+			           			
+			           		   								}
+			           		   									System.out.println();
+			           		   									
+			           		   						}
+			           		   					fis1.close();
+
+			                   }
+		                     
+		                }
+		fis.close();
+	
+	}
+}

@@ -1,0 +1,63 @@
+import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class HashTable {
+	
+		
+	
+	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		
+		FileInputStream fis = new FileInputStream(new File("D:\\hash.xlsx"));
+		XSSFWorkbook workbook = new XSSFWorkbook (fis);
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		
+		Iterator ite = sheet.rowIterator();
+		Iterator ite1 = sheet.rowIterator();
+		
+		Row row,row1,row2;  
+		Cell c1,c2;
+		
+		while(ite.hasNext())
+		                { 
+			  
+			                    row =(Row) ite.next();
+			                    row1 =(Row) ite.next();
+		                	  		
+			                   Iterator<Cell> cite = row.cellIterator();
+			                   Iterator<Cell> cite1 = row1.cellIterator();
+			                   
+			                   			
+			                   			while(cite.hasNext())
+			                   					{
+			                   				    
+			                   				        c1 = cite.next();
+			                   				        c2 = cite1.next();
+			                   							                   
+			                  
+			                   							
+			                    
+			                   							
+			                   							System.out.print(" " + new String(c1.getStringCellValue()));
+			                   							System.out.println(" " + new String(c2.getStringCellValue()));
+			                   							
+			                   					}
+			                   			
+			                   
+		                }
+		               
+		fis.close();
+	
+	
+}
+	}

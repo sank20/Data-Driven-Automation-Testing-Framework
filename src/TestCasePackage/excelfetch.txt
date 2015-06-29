@@ -1,0 +1,82 @@
+package TestCasePackage;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import MyPackage.DriverScript;
+import MyPackage.LogRep;
+import MyPackage.SCShot;
+
+public class Excelfetch {
+
+	public static void excelfetch() throws SecurityException, IOException, InterruptedException
+	{
+		
+		WebDriver driver =  new FirefoxDriver();
+		
+		{
+			
+			
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(75,TimeUnit.SECONDS);
+
+			
+		driver.get(DriverScript.GetParameterFromEnvironmentFile("Application_Link"));
+
+
+		driver.manage().window().maximize();
+		
+		//identify the edit box element using id
+				WebElement e = driver.findElement(By.name("txtFirst"));
+				e.sendKeys(DriverScript.GetTestParameter("First_name"));
+				WebElement d = driver.findElement(By.name("txtLast"));
+				//enter value in the editbox
+				d.sendKeys(DriverScript.GetTestParameter("Last_name"));
+				WebElement f = driver.findElement(By.name("txtLast"));
+			    f.sendKeys(Keys.TAB,DriverScript.GetTestParameter("Address"));
+			    
+			    WebElement g = driver.findElement(By.name("txtPin"));
+			    g.sendKeys(DriverScript.GetTestParameter("Pincode"));
+			    
+			    WebElement dropDownListBox = driver.findElement(By.name("selDest"));
+			    Select clickThis = new Select(dropDownListBox);
+			    clickThis.selectByValue("dhaisar");
+			    
+			    WebElement h = driver.findElement(By.name("txtToj"));
+			    h.sendKeys(DriverScript.GetTestParameter("Time"));
+			    
+			    
+			   
+			    WebElement i = driver.findElement(By.name("txtDoj"));
+			    i.sendKeys(DriverScript.GetTestParameter("Date"));
+			    
+			    WebElement j = driver.findElement(By.name("txtContact"));
+			    j.sendKeys(DriverScript.GetTestParameter("Cellno"));
+			    
+			    WebElement k = driver.findElement(By.name("txtEmail"));
+			    k.sendKeys(DriverScript.GetTestParameter("mail"));
+			  
+			    driver.wait(5);	    
+			    WebElement validate=driver.findElement(By.name("submit1"));
+			    validate.click();
+			    
+			  
+			    
+			    
+			    driver.findElement(By.linkText("HOME")).click();
+			   
+			    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				driver.manage().timeouts().pageLoadTimeout(100,TimeUnit.SECONDS);
+
+				driver.close();
+	    
+		}
+	}
+}
